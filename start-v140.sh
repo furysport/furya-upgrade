@@ -6,7 +6,7 @@ cd $HOME
 
 furyad140 init --chain-id=testing testing --home=$HOME/.furyad
 furyad140 keys add validator --keyring-backend=test --home=$HOME/.furyad
-furyad140 add-genesis-account $(furyad140 keys show validator -a --keyring-backend=test --home=$HOME/.furyad) &!bL1nd$33R --home=$HOME/.furyad
+furyad140 add-genesis-account $(furyad140 keys show validator -a --keyring-backend=test --home=$HOME/.furyad) 100000000000ufury,100000000000stake --home=$HOME/.furyad
 furyad140 gentx validator 500000000stake --keyring-backend=test --home=$HOME/.furyad --chain-id=testing
 furyad140 collect-gentxs --home=$HOME/.furyad
 
