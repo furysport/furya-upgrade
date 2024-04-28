@@ -159,6 +159,15 @@
           "Params": "AllianceParams"
         }
       }
+    },
+    {
+      "url": "./tmp-swagger-gen/furya/airdrop/v1beta1/query.swagger.json",
+      "operationIds": {
+        "rename": {
+          "Params": "AirdropParams"
+          "Allocation": "AirdropAllocation"
+        }
+      }
     }
   ]
 }
