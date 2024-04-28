@@ -11,7 +11,7 @@ if [ -d vendor ]; then
 fi
 
 # Define the version you want to clone
-COSMOS_SDK_VERSION="v0.47.7"
+COSMOS_SDK_VERSION="v0.47.6"
 
 # Define the directory where you want to clone the repo
 COSMOS_SDK_DIR="./cosmos-sdk"

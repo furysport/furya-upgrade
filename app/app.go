@@ -390,8 +390,8 @@ func NewFuryaApp(
 		appCodec,
 		keys[banktypes.StoreKey],
 		app.AccountKeeper,
-		app.BlockedAddresses(),
-		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
+		app.GetSubspace(banktypes.ModuleName),
+		app.BlockedModuleAccountAddrs(),
 	)
 	app.AuthzKeeper = authzkeeper.NewKeeper(
 		keys[authz.ModuleName],
@@ -466,17 +466,18 @@ func NewFuryaApp(
 		app.GetSubspace(alliancemoduletypes.ModuleName),
 		app.AccountKeeper,
 		app.BankKeeper,
-		&stakingKeeper,
+		&app.StakingKeeper,
 		app.DistrKeeper,
 	)
 
 	// register the staking hooks
 	// NOTE: stakingKeeper above is passed by reference, so that it will contain these hooks
-	app.StakingKeeper.SetHooks(
+	// has hooks for alliance, as well.
+	app.StakingKeeper = *stakingKeeper.SetHooks(
 		stakingtypes.NewMultiStakingHooks(app.DistrKeeper.Hooks(),
 			app.SlashingKeeper.Hooks(), app.AllianceKeeper.StakingHooks()),
 	)
-	
+
 	app.BankKeeper.RegisterKeepers(app.AllianceKeeper, &stakingKeeper)
 
 	app.AirdropKeeper = *airdropkeeper.NewKeeper(appCodec, keys[airdroptypes.StoreKey], app.GetSubspace(airdroptypes.ModuleName), app.BankKeeper, app.StakingKeeper, app.AccountKeeper)
@@ -519,7 +520,7 @@ func NewFuryaApp(
 		AddRoute(upgradetypes.RouterKey, upgrade.NewSoftwareUpgradeProposalHandler(app.UpgradeKeeper)).
 		AddRoute(ibcclienttypes.RouterKey, ibcclient.NewClientProposalHandler(app.IBCKeeper.ClientKeeper)).
 		AddRoute(alliancemoduletypes.RouterKey, alliancemodule.NewAllianceProposalHandler(app.AllianceKeeper))
-
+		
 	app.TransferKeeper = ibctransferkeeper.NewKeeper(
 		appCodec,
 		keys[ibctransfertypes.StoreKey],
@@ -662,7 +663,7 @@ func NewFuryaApp(
 		airdrop.NewAppModule(appCodec, app.AirdropKeeper),
 		auth.NewAppModule(appCodec, app.AccountKeeper, authsims.RandomGenesisAccounts, app.GetSubspace(authtypes.ModuleName)),
 		vesting.NewAppModule(app.AccountKeeper, app.BankKeeper),
-		custombankmodule.NewAppModule(appCodec, app.BankKeeper, app.AccountKeeper, app.GetSubspace(banktypes.ModuleName)),
+		bank.NewAppModule(appCodec, app.BankKeeper, app.AccountKeeper),
 		capability.NewAppModule(appCodec, *app.CapabilityKeeper, false),
 		crisis.NewAppModule(app.CrisisKeeper, skipGenesisInvariants, app.GetSubspace(crisistypes.ModuleName)), // always be last to make sure that it checks for all invariants and not only part of them
 		gov.NewAppModule(appCodec, &app.GovKeeper, app.AccountKeeper, app.BankKeeper, app.GetSubspace(govtypes.ModuleName)),
@@ -866,19 +867,6 @@ func NewFuryaApp(
 	return app
 }
 
-func BlockedAddresses() map[string]bool {
-	modAccAddrs := make(map[string]bool)
-	for acc := range GetMaccPerms() {
-		modAccAddrs[authtypes.NewModuleAddress(acc).String()] = true
-	}
-
-	// allow the following addresses to receive funds
-	delete(modAccAddrs, authtypes.NewModuleAddress(govtypes.ModuleName).String())
-	delete(modAccAddrs, authtypes.NewModuleAddress(alliancemoduletypes.ModuleName).String())
-	delete(modAccAddrs, authtypes.NewModuleAddress(authtypes.FeeCollectorName).String())
-
-	return modAccAddrs
-}
 // Name returns the name of the App
 func (app *FuryaApp) Name() string { return app.BaseApp.Name() }
 
@@ -918,7 +906,14 @@ func (app *FuryaApp) ModuleAccountAddrs() map[string]bool {
 	return modAccAddrs
 }
 
-
+func (app *FuryaApp) BlockedModuleAccountAddrs() map[string]bool {
+	modAccAddrs := app.ModuleAccountAddrs()
+	delete(modAccAddrs, authtypes.NewModuleAddress(govtypes.ModuleName).String())
+	delete(modAccAddrs, authtypes.NewModuleAddress(alliancemoduletypes.ModuleName).String())
+	delete(modAccAddrs, authtypes.NewModuleAddress(authtypes.FeeCollectorName).String())
+	
+	return modAccAddrs
+}
 // LegacyAmino returns FuryaApp's amino codec.
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable

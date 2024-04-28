@@ -19,7 +19,6 @@ import (
 	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	alliancemoduletypes "github.com/terra-money/alliance/x/alliance/types"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 )
 
@@ -55,8 +54,6 @@ func CreateUpgradeHandler(
 				keyTable = wasmtypes.ParamKeyTable()
 			case minttypes.ModuleName:
 				keyTable = minttypes.ParamKeyTable()
-			case alliancetypes.ModuleName:
-				keyTable = alliancetypes.ParamKeyTable()
 			}
 
 			if !subspace.HasKeyTable() {
