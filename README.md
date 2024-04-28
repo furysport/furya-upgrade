@@ -1,6 +1,5 @@
 # Furya
 
-![Banner!](assets/banner.png)
 
 [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/furya)
 [![Go Report Card](https://goreportcard.com/badge/github.com/furysport/furya-chain?style=flat-square)](https://goreportcard.com/report/github.com/furysport/furya-chain)
