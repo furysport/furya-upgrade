@@ -1,4 +1,4 @@
-module github.com/furysport/furya-chain
+module github.com/furysport/furya-upgrade
 
 go 1.20
 
