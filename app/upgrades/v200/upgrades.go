@@ -19,6 +19,7 @@ import (
 	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+	alliancemoduletypes "github.com/terra-money/alliance/x/alliance/types"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 )
 
@@ -54,6 +55,8 @@ func CreateUpgradeHandler(
 				keyTable = wasmtypes.ParamKeyTable()
 			case minttypes.ModuleName:
 				keyTable = minttypes.ParamKeyTable()
+			case alliancetypes.ModuleName:
+				keyTable = alliancetypes.ParamKeyTable()
 			}
 
 			if !subspace.HasKeyTable() {
@@ -64,7 +67,7 @@ func CreateUpgradeHandler(
 		// Mint module params update
 		params := minttypes.Params{}
 		params.BlocksPerYear = 5733818
-		params.TotalBurntAmount = []sdk.Coin{sdk.NewInt64Coin("ufury", 118_547_020000)}
+		params.TotalBurntAmount = []sdk.Coin{sdk.NewInt64Coin("ufury", 20_000_000_000000)}
 		subspace, ok := keepers.ParamsKeeper.GetSubspace(minttypes.ModuleName)
 		if !ok {
 			panic("invalid mint module subspace")
