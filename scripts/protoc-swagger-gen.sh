@@ -25,7 +25,6 @@ else
   echo "Cosmos SDK directory already exists, skipping clone"
 fi
 
-
 ibc_dir=$(go list -f '{{ .Dir }}' -m github.com/cosmos/ibc-go/v7)
 
 cd proto
