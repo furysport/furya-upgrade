@@ -10,18 +10,18 @@ import (
 	"strings"
 
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
-	"github.com/furysport/furya-chain/app/keepers"
-	"github.com/furysport/furya-chain/app/upgrades"
-	v130 "github.com/furysport/furya-chain/app/upgrades/v130"
-	v131 "github.com/furysport/furya-chain/app/upgrades/v131"
-	v140 "github.com/furysport/furya-chain/app/upgrades/v140"
-	v200 "github.com/furysport/furya-chain/app/upgrades/v200"
-	airdrop "github.com/furysport/furya-chain/x/airdrop"
-	airdropkeeper "github.com/furysport/furya-chain/x/airdrop/keeper"
-	airdroptypes "github.com/furysport/furya-chain/x/airdrop/types"
-	"github.com/furysport/furya-chain/x/mint"
-	mintkeeper "github.com/furysport/furya-chain/x/mint/keeper"
-	minttypes "github.com/furysport/furya-chain/x/mint/types"
+	"github.com/furysport/furya-upgrade/app/keepers"
+	"github.com/furysport/furya-upgrade/app/upgrades"
+	v130 "github.com/furysport/furya-upgrade/app/upgrades/v130"
+	v131 "github.com/furysport/furya-upgrade/app/upgrades/v131"
+	v140 "github.com/furysport/furya-upgrade/app/upgrades/v140"
+	v200 "github.com/furysport/furya-upgrade/app/upgrades/v200"
+	airdrop "github.com/furysport/furya-upgrade/x/airdrop"
+	airdropkeeper "github.com/furysport/furya-upgrade/x/airdrop/keeper"
+	airdroptypes "github.com/furysport/furya-upgrade/x/airdrop/types"
+	"github.com/furysport/furya-upgrade/x/mint"
+	mintkeeper "github.com/furysport/furya-upgrade/x/mint/keeper"
+	minttypes "github.com/furysport/furya-upgrade/x/mint/types"
 	dbm "github.com/cometbft/cometbft-db"
 	abci "github.com/cometbft/cometbft/abci/types"
 	tmjson "github.com/cometbft/cometbft/libs/json"
@@ -125,11 +125,11 @@ import (
 	"github.com/rakyll/statik/fs"
 	"github.com/spf13/cast"
 
-	intertx "github.com/furysport/furya-chain/x/intertx"
-	intertxkeeper "github.com/furysport/furya-chain/x/intertx/keeper"
-	intertxtypes "github.com/furysport/furya-chain/x/intertx/types"
+	intertx "github.com/furysport/furya-upgrade/x/intertx"
+	intertxkeeper "github.com/furysport/furya-upgrade/x/intertx/keeper"
+	intertxtypes "github.com/furysport/furya-upgrade/x/intertx/types"
 
-	furyaappparams "github.com/furysport/furya-chain/app/params"
+	furyaappparams "github.com/furysport/furya-upgrade/app/params"
 	"github.com/cosmos/ibc-apps/middleware/packet-forward-middleware/v7/packetforward"
 	packetforwardkeeper "github.com/cosmos/ibc-apps/middleware/packet-forward-middleware/v7/packetforward/keeper"
 	packetforwardtypes "github.com/cosmos/ibc-apps/middleware/packet-forward-middleware/v7/packetforward/types"
@@ -662,7 +662,7 @@ func NewFuryaApp(
 		airdrop.NewAppModule(appCodec, app.AirdropKeeper),
 		auth.NewAppModule(appCodec, app.AccountKeeper, authsims.RandomGenesisAccounts, app.GetSubspace(authtypes.ModuleName)),
 		vesting.NewAppModule(app.AccountKeeper, app.BankKeeper),
-		bankmodule.NewAppModule(appCodec, app.BankKeeper, app.AccountKeeper, app.GetSubspace(banktypes.ModuleName)),
+		bank.NewAppModule(appCodec, app.BankKeeper, app.AccountKeeper, app.GetSubspace(banktypes.ModuleName)),
 		capability.NewAppModule(appCodec, *app.CapabilityKeeper, false),
 		crisis.NewAppModule(app.CrisisKeeper, skipGenesisInvariants, app.GetSubspace(crisistypes.ModuleName)), // always be last to make sure that it checks for all invariants and not only part of them
 		gov.NewAppModule(appCodec, &app.GovKeeper, app.AccountKeeper, app.BankKeeper, app.GetSubspace(govtypes.ModuleName)),
