@@ -1,32 +1,10 @@
 # Furya
 ![Banner!](assets/banner.png)
 
-[![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/furya)
-[![Go Report Card](https://goreportcard.com/badge/github.com/furysport/furya-chain?style=flat-square)](https://goreportcard.com/report/github.com/furysport/furya-chain)
-[![Version](https://img.shields.io/github/tag/furysport/furya-chain.svg?style=flat-square)](https://github.com/furysport/furya-chain/releases/latest)
-[![Lines Of Code](https://img.shields.io/tokei/lines/github/furysport/furya-chain?style=flat-square)](https://github.com/furysport/furya-chain)
-
 Furya is a Cosmos SDK based blockchain here to enhance Web3 individuals, communities & builders experience through an all-in-one hub of dApps.
 
-# Testnet
+The Furya Chain is a cutting-edge blockchain platform that lies at the heart of the Furya Hub, a decentralized fantasy sports casino and sports blockchain. 
 
-## All the testnet chains:
-[*DEPRECATED*] - [furya-testnet-v1](https://github.com/furysport/furya-chain/tree/main/testnet/furya-testnet-v1)    
-[*DEPRECATED*] - [furya-testnet-v2](https://github.com/furysport/furya-chain/tree/main/testnet/furya-testnet-v2)    
-[*DEPRECATED*] - [furya-testnet-v3](https://github.com/furysport/furya-chain/tree/main/testnet/furya-testnet-v3)    
-[*DEPRECATED*] - [furya-test-4](https://github.com/furysport/furya-chain/tree/main/testnet/furya-test-4)    
-[*DEPRECATED*] - [furya-test-5](https://github.com/furysport/furya-chain/tree/main/testnet/furya-test-5)    
-[__ACTIVE__] - [furya-test-6](https://github.com/furysport/furya-chain/tree/main/testnet/furya-test-6)    
+Designed to provide a trustless play-to-own gaming experience for consumers and businesses alike, the Furya Chain leverages the power and flexibility of blockchain technology to bring unparalleled efficiency, security, and scalability to developers and users alike.
 
-# Mainnet
-
-## All the mainnet chains:
-[__ACTIVE__] - [furya-1](https://github.com/furysport/furya-chain/tree/main/mainnet/furya-1)    
-
-# Dev
-
-## Run custom integration test
-
-```shell
-FURYA_DAPP_REPO=/path/to/furya-dapp ./integration-test/run.sh
-```
+The Furya Chain aims to redefine the gaming and decentralized finance (DeFi) landscapes by providing a robust, scalable, and developer-friendly platform. It serves as the foundational infrastructure for a new era of gaming, betting, and sports financial applications, enabling seamless integration of finance, gaming, and decentralized applications (dApps).
