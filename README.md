@@ -28,30 +28,6 @@ The $FURY token is the native cryptocurrency of the Furya Chain, serving as the 
 ## 🤝 Join the Network
 Join the vanguard of blockchain sports, gaming and decentralization. Your journey as a Furya Blockchain validator starts now.
 
-<Steps titleSize="h2">
-  <Step title="🔒 Validate">
-    Be a cornerstone in the future of decentralized gaming by becoming a validator on the Furya Blockchain. 
-  </Step>
-  <Step title="🔨 Build">
-  <Frame>
-    <p align="center">
-    <img
-        alt="No-code UI interactions"
-        src="https://media.tenor.com/eVXHLyK4c-kAAAAC/building-lego.gif"
-    />
-    </p>
-</Frame>
-  Leverage Furya's specialized modular blockchain infrastructure crafted for the future of sports and gaming on Web3. Powered by Cosmos SDK, Comet BFT, and IBC protocol, Furya provides a robust foundation for developers to innovate and lead in the rapidly evolving sports and gambling landscape.
-  
-  Join Furya’s mission to revolutionize sports and gaming on Web3. Your journey to becoming a pioneer in blockchain-based entertainment starts here.
-
-  Get started with Furya: [Explore Furya GitHub Repository](https://github.com/furysport)
-</Step>
-<Step title="💪 Contribute" >
-    Furya is not just a blockchain; it's a growing community focused on sports and gaming in Web3. We're looking for developers like you to help us build and improve our open-source platform. Whether you're working on your own or in a small team, there's a place for you here.
-</Step>
-</Steps>
-
 ## 🔮 Quick Access
 |       |                                                                  |                                                                        |
 | ----- | ---------------------------------------------------------------- | ---------------------------------------------------------------------- |
